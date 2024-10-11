@@ -12,17 +12,6 @@ window.onload = function () {
   updateFavoriteList();
 };
 
-function checkLoginStatus() {
-  fetch("/check_login") // 서버에 로그인 상태 요청
-    .then((response) => response.json())
-    .then((data) => {
-      isLoggedIn = data.isLoggedIn; // 로그인 상태 설정
-      document.getElementById("logoutButton").style.display = isLoggedIn
-        ? "block"
-        : "none"; // 상태에 따라 로그아웃 버튼 표시
-    });
-}
-
 // 지도 초기화 함수
 function initMap() {
   const mapContainer = document.getElementById("map");
