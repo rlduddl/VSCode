@@ -7,9 +7,21 @@ const API_KEY = "78a4b456e0a19ac893591fb5dc67d523"; // 여기에 자신의 카�
 // 페이지 로드 시 즐겨찾기 목록 업데이트
 window.onload = function () {
   // script.onload = () => initMap(); // API가 로드된 후 initMap 호출
+  checkLoginStatus(); // 로그인 상태 확인 함수 호출
   initMap();
   updateFavoriteList();
 };
+
+function checkLoginStatus() {
+  fetch("/check_login") // 서버에 로그인 상태 요청
+    .then((response) => response.json())
+    .then((data) => {
+      isLoggedIn = data.isLoggedIn; // 로그인 상태 설정
+      document.getElementById("logoutButton").style.display = isLoggedIn
+        ? "block"
+        : "none"; // 상태에 따라 로그아웃 버튼 표시
+    });
+}
 
 // 지도 초기화 함수
 function initMap() {
@@ -59,6 +71,11 @@ function searchStores() {
           showLocation(store.address_name);
           selectedStore = store.place_name; // 선택한 가게 이름 저장
           document.getElementById("storeId").value = selectedStore; // 선택한 가게 이름을 인풋란에 표시
+
+          // 즐겨찾기 추가 버튼으로 스크롤 이동
+          document
+            .getElementById("addFavoriteBtn")
+            .scrollIntoView({ behavior: "smooth" });
         };
 
         searchResults.appendChild(li);
@@ -129,6 +146,7 @@ function addFavorite() {
 function updateFavoriteList() {
   const favoriteList = document.getElementById("favoriteList");
   favoriteList.innerHTML = ""; // 기존 목록 초기화
+
   storeIds.forEach((id) => {
     const li = document.createElement("li");
     li.textContent = id;
