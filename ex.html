@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>AJAX Request</title>
+  </head>
+  <body>
+    <p id="p">data</p>
+    <script>
+      window.onload = () => {
+        // 실제 테스트 API 엔드포인트
+        const urlValue = "https://jsonplaceholder.typicode.com/posts";
+
+        // $.ajax()로 GET 요청 보내기
+        $.ajax({
+          url: urlValue,
+          type: "GET",
+          success: (data, status, xhr) => {
+            console.log("Data from $.ajax:", data);
+            console.log("Status from $.ajax:", status);
+            console.log("XHR from $.ajax:", xhr);
+          },
+          error: (error) => {
+            console.log("Error from $.ajax:", error);
+          },
+        });
+
+        // $.get()으로 동일한 요청 보내기
+        $.get(urlValue, (data, status) => {
+          console.log("Data from $.get:", data);
+          console.log("Status from $.get:", status);
+        });
+      };
+    </script>
+  </body>
+</html>
