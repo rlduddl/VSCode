@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #header {
+        background-color: #000;
+        color: #fff;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+      }
+      #div {
+        color: red;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      앱 헤더
+      <button type="button" id="btnMenu">메뉴</button>
+    </header>
+    <nav id="nav">
+      <ul>
+        <li><a href="">메뉴</a></li>
+        <li><a href="">메뉴</a></li>
+        <li><a href="">메뉴</a></li>
+        <li><a href="">메뉴</a></li>
+      </ul>
+    </nav>
+    <div id="div">버튼</div>
+
+    <script>
+      document.querySelector("#btnMenu").addEventListener("click", () => {
+        const nav = document.querySelector("#nav");
+        nav.classList.add("active");
+        document.querySelector("header").style.backgroundColor = "#ccc";
+      });
+      // <div class="....">
+      // <div style="....">
+      // 자바스크립트 : 클래스, 스타일 두가지 다 수정가능
+      // css 클래스를 우선 수정하는것이 중요하다.
+
+      // className
+      console.log(document.body.className);
+
+      // classList
+      // elem.classList.add('클래스명') : 해당 요소에 클래스명이 추가됨
+      // elem.classList.remove('클래스명') : 해당 요소에 클래스명이 삭제됨
+      // elem.classList.toggle('클래스명') : 클래스명이 있으면 제거, 없으면 추가
+      // elem.classList.contains('클래스명') : 클래스명 존재 여부에 따라 true / false 반환
+
+      // 요소의 스타일을 인라인으로 지정하기
+      // elem.style......
+      // elem.style.width = "100px";
+      // elem.style.backgroudColor = "100px"
+      // background-Color -> 카멜케이스
+      // document.body.style.display = "none";
+      // setTimeout(() => (document.body.style.display = ""), 1000);
+      // cssText : 스타일을 모두 다시 작성한다.
+      // style.**** : 객체이고 읽기 전용
+      // style.color = "red"
+      // style.fontSize = "100px"
+      // elem.style = "color: red; fontSize: 100px"
+      //   const div = document.querySelector("#div");
+      //   div.style.cssText = `
+      //   color: red;
+      //   width: 50px;
+      //   border: 1px solid red;
+      //   `;
+      //   div.setAttribute(
+      //     "style",
+      //     "color: red; width: 50px; border: 1px solid red;"
+      //   );
+
+      const div = document.querySelector("#div");
+      //   div.style.margin = "20px";
+      //   console.log(div.style.margin);
+
+      console.log(div.style.color); // 확인불가.. 인라인으로만 작성한 style만 확인가능
+      console.log(div.style.margin);
+
+      const divStyle = getComputedStyle(div);
+      console.log(divStyle.color);
+      console.log(divStyle.margin);
+    </script>
+  </body>
+</html>

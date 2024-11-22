@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="p">마우스 이벤트</p>
+    <script>
+      const p = document.querySelector("#p");
+      p.addEventListener("mouseover", (event) => {
+        event.target.classList.add("active");
+      });
+      p.addEventListener("mouseout", (event) => {
+        event.target.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

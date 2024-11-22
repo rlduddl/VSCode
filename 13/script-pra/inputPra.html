@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="checkbox" id="input" checked />
+    <div id="div" style="color: red; font-size: 20px">hello</div>
+    <script>
+      const chk = document.querySelector("#input");
+      console.log(chk.getAttribute("checked"));
+      console.log(chk.checked);
+      const div = document.querySelector("#div");
+      console.log(div.getAttribute("style"));
+      console.log(div.style);
+      console.log(div.style.color);
+      console.log(div.style.fontSize);
+    </script>
+  </body>
+</html>

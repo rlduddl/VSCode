@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn" type="button">Text를 숨기려면 클릭하세요</button>
+    <button id="btn2" type="button" onclick="this.hidden = true">
+      클릭하면 나 자신을 숨겨라
+    </button>
+
+    <p id="txt">Text</p>
+    <script>
+      const btn = document.querySelector("#btn");
+
+      btn.onclick = function () {
+        const txt = document.querySelector("#txt");
+        txt.hidden = true;
+        txt.style.display = "none";
+      };
+    </script>
+  </body>
+</html>

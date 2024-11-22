@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+        .order[order-state="new"] {
+            color: green;
+        }
+        .order[order-state="pending"] {
+            color: blue;
+        }
+        .order[order-state="canceled"] {
+            color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <div data-order-new="new">new order</div>
+    <div class="order" order-state="new">new order</div>
+    <div class="order" order-state="pending">pending order</div>
+    <div class="order" order-state="canceled">canceled order</div>
+    <div show-info="name"><div>
+    <div show-info="age"></div>
+    <script>
+        const dataOrder = document.querySelector('div');
+        console.log(dataOrder.dataset.orderNew)
+
+
+
+        const order = document.querySelector('.order');
+        setTimeout(() => order.setAttribute("order-state",
+            "pending"), 2000);
+    
+      const user = {
+        name: "박기영",
+        age: 27,
+      };
+      for (let div of document.querySelectorAll
+        ('div[show-info]')) {
+            const field = div.getAttribute
+            ("show-info");
+            div.innerHTML = user[field]; 
+        }
+    
+    </script>
+  </body>
+</html>

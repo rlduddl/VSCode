@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: black;
+      }
+      .nav-menu {
+        list-style: none;
+      }
+      .nav-branding,
+      .nav-link {
+        color: #fff;
+        text-decoration: none;
+      }
+      .nav-branding {
+        font-size: 25px;
+      }
+      .nav-bar,
+      .nav-menu {
+        display: flex;
+      }
+      .nav-menu {
+        gap: 20px;
+      }
+      .nav-bar {
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+      .hamburger {
+        display: none;
+      }
+      .container {
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .bar {
+        background-color: #fff;
+        width: 25px;
+        height: 2px;
+        display: block;
+        margin: 6px auto;
+        transition: all 0.3s;
+      }
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active .bar:nth-child(1) {
+        transform: rotate(45deg) translateY(11px);
+      }
+      .hamburger.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translateY(-11px);
+      }
+      @media (max-width: 767px) {
+        .container {
+          width: auto;
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 73px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          background-color: rgba(0, 0, 0, 0.9);
+          transition: all 0.5s;
+        }
+        .nav-menu.active {
+          left: 0;
+        }
+        .hamburger {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="nav-bar">
+          <a href="#" class="nav-branding">로고</a>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item">
+              <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Contact</a>
+            </li>
+          </ul>
+
+          <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <h2>웹사이트</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+        laboriosam adipisci doloribus dolorem earum? Quisquam hic ullam facere
+        adipisci similique doloribus quia nulla nisi ipsum culpa, asperiores,
+        excepturi cum repellat recusandae reiciendis. Qui autem voluptatibus
+        eaque quisquam distinctio error impedit voluptates sit placeat,
+        consectetur porro a, odit delectus, aliquid dolor!
+      </p>
+    </div>
+    <script>
+      const hamburger = document.querySelector("#hamburger");
+      const navMenu = document.querySelector("#nav-menu");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

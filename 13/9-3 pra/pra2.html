@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <button type="button" id="btn">클릭</button>
+
+    <script>
+      function sayHi() {
+        console.log("hi");
+      }
+      function sayHi2() {
+        console.log("hi 2");
+      }
+
+      const btn = document.querySelector("#btn");
+      // sayHi();  : onclick 이벤트 할당시에 ()를 붙이면 함수를 호출하겠다는 의미 따라서 함수를 할당만 할 경우에는 ()를 생략한다.
+      //   btn.onclick = function () {
+      //     sayHi();
+      //   };
+      //   btn.onclick = function () {
+      //     sayHi2();
+      //   };
+      // addEventListener, removeEventListener
+      // elem.addEventListener(event, handler, [option]);
+      // option :
+      //            once : true 이벤트가 발생되면 리스너가 자동삭제
+      //            capture : 어느 단계에서 이벤트를 다뤄야 할지 알려주는 속성 true / false
+      //            passive : true 이면 리스너에서 지정한 함수가 preventDefault()를 호출하지 않는다.
+
+      // elem.removeEventListener(event, handler, [option]);
+
+      //btn.onclick 과 다르게 한번에 여러개 실행 가능
+      function thanks() {
+        console.log("감사합니다.");
+      }
+      btn.addEventListener("click", thanks);
+      btn.addEventListener("click", sayHi);
+      btn.addEventListener("click", sayHi2);
+      //   btn.removeEventListener("click", thanks);
+
+      //   function cnt() {
+      //     for (let i = 0; i < 10; i++) {
+      //       console.log(`숫자 ${i}번`);
+      //     }
+      //   }
+
+      // 이벤트 : 무언가 일어났다는 신호
+      // 마우스 이벤트
+      // click : 요소위에서 마우스 왼쪽 클릭시 (터치스크린에서는 탭 했을때)
+      // touchstart, touchend
+      // contextmenu : 요소에서 마우스 우클릭시 발생
+      // mouseover, mouseout : 커서를 요소 위로 움직였을대, 요소 밖으로 움직였을때
+      // mousedown, mouseup : 마우스 왼쪽 버튼을 누르고 있을때, 마우스 버튼을 땔때
+      // mousemove : 마우스를 움직일때
+
+      // 폼요소
+      // submit : 사용자가 폼을 제출할 때
+      // focus : 사용자가 input과 같은 요소에 포커스를 할때 발생
+
+      // 키보드 이벤트
+      // keydown, keyup : 키보드를 누를때, 땔 때
+
+      // 문서 이벤트
+      // DOMContentLoaded : HTML이 전부 로드 및 처리되어 DOM 생성이 완료되었을 때
+
+      // 이벤트 핸들러 : 이벤트에 반영하려면 이벤트가 발생했을때 실행되는 함수인 핸들러(handler)를 할당해야한다.
+    </script>
+  </body>
+</html>

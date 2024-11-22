@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        }
+        .dropdown {
+            padding-bottom: 10px;
+            cursor: pointer;
+            border: 1px solid black;
+            padding: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.7);
+        }
+       
+        .dropdown__content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+        .dropdown__title::before {
+            content: "+";
+        }
+        .dropdown.active .dropdown__title::before {
+            content: "-";
+        }
+        .dropdown.active .dropdown__content {
+            max-height: 100vh
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="dropdown-wrapper">
+          <div class="dropdown" id="c1">
+            <h3 class="dropdown__title">컬랍스 또는 아코디언 이라고 한다.</h3>
+            <div class="dropdown__content">
+              <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam adipisci doloribus dolorem earum? Quisquam hic ullam facere adipisci similique doloribus quia nulla nisi ipsum culpa, asperiores, excepturi cum repellat recusandae reiciendis. Qui autem voluptatibus eaque quisquam distinctio error impedit voluptates sit placeat, consectetur porro a, odit delectus, aliquid dolor!
+              </p>
+              <p></p>
+            </div>
+          </div>
+  
+          <div class="dropdown" id="c2">
+            <h3 class="dropdown__title">메뉴 2</h3>
+            <div class="dropdown__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam adipisci doloribus dolorem earum? Quisquam hic ullam facere adipisci similique doloribus quia nulla nisi ipsum culpa, asperiores, excepturi cum repellat recusandae reiciendis. Qui autem voluptatibus eaque quisquam distinctio error impedit voluptates sit placeat, consectetur porro a, odit delectus, aliquid dolor!
+              </p>
+            </div>
+          </div>
+  
+          <div class="dropdown" id="c3">
+            <h3 class="dropdown__title">메뉴 3</h3>
+            <div class="dropdown__content">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam adipisci doloribus dolorem earum? Quisquam hic ullam facere adipisci similique doloribus quia nulla nisi ipsum culpa, asperiores, excepturi cum repellat recusandae reiciendis. Qui autem voluptatibus eaque quisquam distinctio error impedit voluptates sit placeat, consectetur porro a, odit delectus, aliquid dolor!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
+
+    //    const c1 = document.querySelector("#c1");
+    //    const c2 = document.querySelector("#c2");
+    //    const c3 = document.querySelector("#c3");
+    //    c1.addEventListener("click", () => {
+    //     c1.classList.toggle("active");
+    //    });
+    //    c2.addEventListener("click", () => {
+    //     c2.classList.toggle("active");
+    //    });
+    //    c3.addEventListener("click", () => {
+    //     c3.classList.toggle("active");
+    //    });
+ 
+        function handleDropdown(dropdown) {
+            // 1. 클릭한 대상의 active 클래스가 토글
+            dropdown.classList.toggle('active');
+            // 2. .active가 붙어있는 클래스에서 .active 클래스 삭제
+            const activeDropdowns = dropdown.parentElement.querySelectorAll('.active');
+            activeDropdowns.forEach(item => {
+                if (item !== dropdown) item.classList.remove('active')
+            })
+        }
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', () => {
+                handleDropdown(dropdown);
+            });
+        })
+    
+    </script>
+</body>
+</html>

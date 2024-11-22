@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 스타일을 추가하여 사용자가 드래그할 수 있는 영역을 더 명확히 표시할 수 있습니다 */
+      .draggable-content {
+        user-select: none; /* 드래그를 방지하기 위해 */
+      }
+    </style>
+  </head>
+  <body>
+    <span ondblclick="console.log('더블클릭')" onmousedown="return false">
+      버튼간단어 띄어쓰기
+    </span>
+    <div class="draggable-content" oncopy="handleCopy(event)">
+      드래그해서 카피하지 마세요.
+    </div>
+    <script>
+      function handleCopy(event) {
+        // 복사 이벤트가 발생하면 경고 메시지를 표시합니다.
+        alert("카피 안됩니다!");
+        // 복사를 막기 위해 기본 동작을 취소합니다.
+        event.preventDefault();
+      }
+    </script>
+  </body>
+</html>

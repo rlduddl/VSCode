@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <div id="div2">
+        DIV 태그
+        <p id="p">P 태그</p>
+      </div>
+    </div>
+    <script>
+      // 이벤트 버블링 event.target
+
+      document.querySelector("#div1").addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log(e.target);
+      });
+
+      document.querySelector("#div2").addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log(e.target);
+      });
+
+      document.querySelector("#p").addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log(e.target);
+      });
+    </script>
+  </body>
+</html>

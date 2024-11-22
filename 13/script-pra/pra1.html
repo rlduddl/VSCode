@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style></style>
+  </head>
+  <body>
+    <a name="list">a 태그 리스트</a>
+    <ul>
+      <li><a href="http://www.google.com">http://www.google.com</a></li>
+      <li><a href="/tutorial">tutorial.html</a></li>
+      <li><a href="local/path">local/path</a></li>
+      <li><a href="ftp://ftp.com">ftp://ftp.com</a></li>
+      <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+      <li><a href="http://naver.com">http://naver.com</a></li>
+    </ul>
+    <script>
+      const links = document.querySelectorAll("a");
+      for (let link of links) {
+        const href = link.getAttribute("href");
+        if (!href) continue;
+        if (!href.includes("://")) continue;
+        link.style.color = "orange";
+      }
+    </script>
+  </body>
+</html>

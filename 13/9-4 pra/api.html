@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie DB</title>
+    <link rel="stylesheet" href="api.css" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <script src="circles-master/circles.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="headerTop">
+          <h1 class="logo"><a href="script-1.html">MOVIE DB</a></h1>
+          <div>
+            <button type="button" class="headerBtn" id="headerBtn2">
+              장르<i class="fa fa-caret-down"></i>
+            </button>
+            <button type="button" class="headerBtn" id="headerBtn">
+              연도<i class="fa fa-caret-down"></i>
+            </button>
+          </div>
+        </div>
+        <div class="inputContainer" id="inputContainer">
+          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            class="headerSearch"
+            id="headerSearch"
+            placeholder="영화 검색"
+          />
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <ol class="movieList" id="movieList">
+        <!--<li>
+          <a href="">
+            <div class="imgContainer">
+              <img src="https://picsum.photos/300/400" alt="" class="poster" />
+            </div>
+            <div class="infoContainer">
+              <p class="date">2024-01-01</p>
+              <h2 class="title">울버린</h2>
+              <div class="rate">100</div>
+            </div></a
+          >
+        </li>-->
+      </ol>
+      <button type="button" class="btnMore" id="btnMore">더보기</button>
+
+      <div class="yearsContainer" id="yearsContainer">
+        <ol id="yearList"></ol>
+      </div>
+
+      <div class="genresContainer" id="genresContainer">
+        <ol id="genresList"></ol>
+      </div>
+    </main>
+
+    <script>
+      // 장르 목록
+      const apiKey = "daf14385d32e4bd56a9acaff4001de0c";
+      let genreId = null;
+      fetch(
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=daf14385d32e4bd56a9acaff4001de0c"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const { genres } = data;
+          const genresList = document.querySelector("#genresList");
+          console.log(data);
+          let genreHtml = "";
+          genres.forEach((genre) => {
+            genreHtml += `<li><button type="button" data-genre="${genre.id}">${genre.name}</button></li>`;
+          });
+          genresList.innerHTML = genreHtml;
+        });
+
+      document.querySelector("#headerBtn2").addEventListener("click", () => {
+        document.querySelector("#genresContainer").style.display = "flex";
+      });
+
+      // 장르 버튼 클릭 시 장르 목록 표시
+      document.querySelector("#headerBtn2").addEventListener("click", () => {
+        document.querySelector("#genresContainer").style.display = "flex";
+      });
+
+      // 장르 클릭 시 장르에 맞는 영화 목록 요청
+      document.querySelector("#genresList").addEventListener("click", (e) => {
+        console.log(e.target.tagName); // tagName 확인후 if절에 대입
+        if (e.target.tagName === "BUTTON") {
+          genreId = e.target.dataset.genre;
+          document.querySelector("#genresContainer").style.display = "none";
+          fetchMoviesByGenre(genreId);
+        }
+      });
+
+      // 장르에 맞는 영화 목록 요청
+      function fetchMoviesByGenre(genreId) {
+        fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const { results } = data;
+            document.querySelector("#movieList").innerHTML = drawHTML(results);
+          });
+      }
+
+      // 당해년도부터 뒤로 20년까지의 배열 생성
+      const currentYear = new Date().getFullYear();
+      const yearsArray = [];
+      for (let i = currentYear; i > currentYear - 20; i--) {
+        yearsArray.push(i);
+      }
+
+      // yearsArray를 loop문으로 html 생성 후 yearList에 넣는다.
+      let yearHtml = "";
+      yearsArray.forEach((item) => {
+        yearHtml += `<li><button type="button" data-year="${item}">${item}</button></li>`;
+      });
+      document.querySelector("#yearList").innerHTML = yearHtml;
+
+      // yearList에 있는 버튼을 클릭하면 콘솔에 data-year에 있는 값을 출력해라.
+      const btns = document.querySelectorAll("#yearList button");
+      console.log(btns);
+
+      // 버튼을 loop문을 이용해서 이벤트를 건다.
+      let yearPage = 1;
+      // let prevYear = "";
+      btns.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          const year = e.target.dataset.year;
+          document.querySelector("#yearsContainer").style.display = "none";
+          fetch(
+            `https://api.themoviedb.org/3/discover/movie?api_key=daf14385d32e4bd56a9acaff4001de0c&primary_release_year=${year}&page=${yearPage}`
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              const { results } = data;
+              // results 데이터가 있으면 페이지 번호를 증가시킨다.
+              if (results) {
+                yearPage++;
+              }
+              document.querySelector("#movieList").innerHTML =
+                drawHTML(results);
+              // .insertAdjacentHTML("beforeend", drawHTML(results));
+            });
+        });
+      });
+
+      // 연도 팝업 버튼 처리
+      document.querySelector("#headerBtn").addEventListener("click", () => {
+        document.querySelector("#yearsContainer").style.display = "flex";
+      });
+
+      // https://api.themoviedb.org/3/discover/movie?api_key=daf14385d32e4bd56a9acaff4001de0c&primary_release_year=2021&page=1
+
+      // 영화 검색 엔드포인트 : https://api.themoviedb.org/3/search/movie?api_key=daf14385d32e4bd56a9acaff4001de0c&language=ko-KR&query=&page=
+      let page = 1;
+      // 페이지 로딩 시 데이터 생성 메서드 호출
+      // generateData();
+      // 더보기 버튼 클릭 시 처리
+      document.querySelector("#btnMore").addEventListener("click", () => {
+        generateData();
+      });
+      // 데이터 생성 메서드
+      function generateData() {
+        fetch(
+          "http://api.themoviedb.org/3/movie/popular?api_key=daf14385d32e4bd56a9acaff4001de0c&language=ko-KR&page=" +
+            page
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            const { results } = data;
+            // results 데이터가 있으면 페이지 번호를 증가시킨다.
+            if (results.length > 0) {
+              page++;
+              // 만약 페이지 번호가 500이상이면 더보기 버튼을 숨김처리한다.
+              if (page >= 500) {
+                document.querySelector("#btnMore").style.display = "none";
+              }
+            }
+
+            // 생성된 html 코드를 movieList 태그가 끝나기 전 즉 맨 마지막에 추가한다.
+            document
+              .querySelector("#movieList")
+              .insertAdjacentHTML("beforeend", drawHTML(results));
+            // pie 형태의 차트 출력
+            // document.querySelectorAll("#movieList li").forEach((item, index) => {
+            //   const relItem = item.querySelector("#circle_" + index);
+            //   var ccl = Circles.create({
+            //     id: "circle_" + index,
+            //     radius: 15,
+            //     value: relItem.dataset.rel,
+            //     maxValue: 10,
+            //     width: 3,
+            //     text: function (value) {
+            //       return value;
+            //     },
+            //     colors: ["#EFEFEF", "#DB2D43"],
+            //     duration: 400,
+            //     wrpClass: "circles-wrp",
+            //     textClass: "circles-text",
+            //     valueStrokeClass: "circles-valueStroke",
+            //     maxValueStrokeClass: "circles-maxValueStroke",
+            //     styleWrapper: true,
+            //     styleText: true,
+            //   });
+            // });
+          });
+      }
+
+      // 검색 폼 엔터키 처리
+      const inputContainer = document.querySelector("#inputContainer");
+      inputContainer.addEventListener("keyup", function (e) {
+        e.preventDefault();
+        if (e.keyCode === 13) {
+          // 검색을 시도하면 1페이지부터 다시 로딩
+          page = 1;
+          const keyword = document.querySelector("#headerSearch").value;
+          console.log(keyword);
+
+          fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=daf14385d32e4bd56a9acaff4001de0c&language=ko-KR&query=${keyword}&page=${page}`
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              const { results, total_pages } = data;
+              page++;
+              // 검색 했을때 페이지 번호가 total_pages보다 크면 더보기 버튼을 숨기거나 보임 처리
+              if (page >= total_pages) {
+                document.querySelector("#btnMore").style.display = "none";
+              } else {
+                document.querySelector("#btnMore").style.display = "block";
+              }
+              // drawHTML 메서드에 결과 목록을 파라미터로 주고 리턴 받아서 화면에 그린다.
+              document.querySelector("#movieList").innerHTML =
+                drawHTML(results);
+            });
+        }
+        return;
+      });
+
+      // 영화 목록을 받아서 html로 리턴
+      function drawHTML(results) {
+        let html = "";
+        results.forEach((element, index) => {
+          html += `
+              <li>
+                <a href="">
+                  <div class="imgContainer">
+                    <img src="https://image.tmdb.org/t/p/w500${element.poster_path}" alt="" class="title" />
+                  </div>
+                  <div class="infoContainer">
+                    <p class="date">${element.release_date}</p>
+                    <h2 class="title">${element.title}</h2>
+                    <div class="rate" id="circle_${index}" data-rel="${element.vote_average}"></div>
+                  </div></a
+                >
+              </li>
+            `;
+        });
+        return html;
+      }
+      // "https://image.tmdb.org/t/p" + poster_path
+      // axios
+    </script>
+  </body>
+</html>

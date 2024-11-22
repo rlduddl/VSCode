@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      .alert {
+        background-color: #2ecc71;
+        color: #364441;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #364441;
+      }
+    </style>
+  </head>
+  <body>
+    <ol id="ol">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <div class="alert"><b>안녕하세요!</b> 중요 메세지를 확인했습니다.</div>
+    <script>
+      // 1.DOM 노드 생성
+      const div = document.createElement("div");
+      // 2.생성한 노드에 클래스 지정
+      div.className = "alert";
+      // 3.내용 채워넣기
+      div.innerHTML = "<b>안녕하세요!</b> 중요 메세지를 확인했습니다.";
+      // 4.화면에 출력
+      document.body.append(div);
+
+      setTimeout(() => div.remove(), 1000);
+      // document.body.insertAdjacentHTML(
+      //   "afterbegin",
+      //   "<div class='alert'><b>안녕하세요!</b> 중요 메세지를 확인했습니다.</div>"
+      // );
+      // node.append(노드 또는 문자열) : node 끝에 삽입
+      // node.prepend(노드 또는 문자열) : node 맨 앞에 삽입
+      // node.before(노드 또는 문자열) : 이전에 삽입
+      // node.after(노드 또는 문자열) : 다음에 삽입
+      // node.replaceWith(노드 또는 문자열) : node를 새로운 노드나 문자열로 대체
+
+      const ol = document.querySelector("#ol");
+      ol.before("before");
+      ol.after("after");
+      const liFirst = document.createElement("li");
+      liFirst.innerHTML = "prepend";
+      ol.prepend(liFirst);
+      const liLast = document.createElement("li");
+      liLast.innerHTML = "append";
+      ol.append(liLast);
+
+      const div1 = document.querySelector("#div");
+      // div1.before("<p>안녕</p>", document.createElement("hr"));
+      // insertAdjecentHTML(위치, html)
+      // beforebegin : elem 바로 앞에 html 삽입
+      // afterbegin : elem의 첫번째 자식요소 바로 앞에 html 삽입
+      // beforeend : elem의 마지막 자식요소 바로 다음에 html 삽입
+      // afterend : elem 바로 다음에 html 삽입
+      div1.insertAdjacentHTML("beforebegin", "<p>안녕하세요.</p>");
+      div1.insertAdjacentHTML("afterend", "<p>안녕히가세요.</p>");
+
+      //1. DOM 노드 생성
+      //2. 생성한 노드에 클래스를 지정
+      // 복제 : elem.cloneNode(true) -> elem의 깊은 복제본이 만들어진다. 속성, 자손요소 모두 복사된다.
+      // elem.cloneNode(false) -> 후손 노드 복사없이 elem만 복제된다.
+
+      const div = document.querySelector("#div");
+      const div2 = div.cloneNode(true);
+      div2.querySelector("b").innerHTML = "안녕히가세요!";
+      div.after(div2);
+
+      // 요소의 모든 하위 요소들을 삭제하는 함수
+      function clear(elem) {
+        // do
+      }
+      const elem = document.querySelector("#elem");
+      clear(elem);
+    </script>
+    <!-- &lt;p&gt;안녕&lt;/p&gt; -->
+  </body>
+</html>

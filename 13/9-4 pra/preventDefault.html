@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 이벤트 전파 방지-->
+    <a href="http://www.naver.com" onclick="event.preventDefault();">링크</a>
+    <form action="" id="form">
+      <input type="text" />
+      <button type="submit">저장</button>
+    </form>
+    <script>
+      document.querySelector("#form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        console.log("연산");
+        // 폼제출 코드
+        if (confirm("폼을 제출 하겠습니까?")) {
+          document.querySelector("#form").submit();
+        }
+      });
+    </script>
+  </body>
+</html>

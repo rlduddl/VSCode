@@ -64,13 +64,13 @@
     </ul>
     <a href="http://google.com/file.zip">링크 1</a>
     <a href="http://google.com">링크 2</a> -->
-    <h1>목차</h1>
+    <!-- <h1>목차</h1>
     <div class="contents">
       <ul class="book">
         <li class="chapter">1장</li>
         <li class="chapter">2장</li>
       </ul>
-    </div>
+    </div> -->
 
     <script>
       //childNodes
@@ -106,13 +106,13 @@
       //   }
       // }
 
-      // closet : 부모요소, 부모요소의 부모요소 등 DOM 트리에서 특정 요소의 상위에 있는 요소들을 조상요소라고 한다.
+      // closest : 부모요소, 부모요소의 부모요소 등 DOM 트리에서 특정 요소의 상위에 있는 요소들을 조상요소라고 한다.
       // 메서드 elem. closest(css) ---> elem 자기 자신을 포함해서 css 선택자와 일치하는 가장 가까운 조상요소를 찾는다.
       // 해당 요소로부터 시작해서 DOM트리를 한단계씩 거슬러 올라간다.
       // 선택자와 일치하는 요소를 찾으면 검색을 중단하고 해당 요소를 반환한다.
-      let chapter = document.querySelector(".chapter");
-      console.log(chapter.closest(".book"));
-      console.log(chapter.closest(".contents"));
+      // let chapter = document.querySelector(".chapter");
+      // console.log(chapter.closest(".book"));
+      // console.log(chapter.closest(".contents"));
 
       //   var heading = document.querySelector("#heading");
       //   heading.onclick = function () {

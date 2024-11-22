@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="ul">
+      <li>자바</li>
+      <li>자바 스크립트</li>
+      <li>SQL</li>
+      <li>CSS</li>
+      <li>HTML</li>
+    </ul>
+    <script>
+      // li태그를 선택할 수 있게 코딩
+      // li태그를 클릭하면 .active가 추가되고, 나머지는 .active 해제
+      // ctrl키 + li태그를 중복선택 (.active) 여러 li 태그에 적용가능
+      const ul = document.querySelector("#ul");
+      ul.onclick = function (event) {
+        // li 태그가 아니면 return
+        if (event.target.tagName != "LI") return;
+        // ctrlkey에 대한 처리
+        if (event.ctrlKey) {
+          //여러개 처리
+          toggleSelect(event.target);
+        } else {
+          //한개 처리
+          singleSelect(event.target);
+        }
+        function toggleSelect(li) {
+          li.classList.toggle("active");
+        }
+
+        function singleSelect(li) {
+          console.log(li);
+          const selectedItem = ul.querySelectorAll(".active");
+          console.log(selectedItem);
+          selectedItem.forEach((item) => item.classList.remove("active"));
+          li.classList.add("active");
+        }
+        // 여러개 클릭 처리 .active 클래스를 classList.toggle
+        // 한개 클릭 처리 querySelectorAll >> loop >> .active 삭제 후 클릭한 요소에 .active
+      };
+      ul.onmousedown = function (event) {
+        return false;
+      };
+    </script>
+  </body>
+</html>

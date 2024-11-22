@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동적 박스 크기 및 색상 변경</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+      .form label {
+        margin-top: 10px;
+      }
+      #box {
+        padding: 20px;
+        border: 1px solid #000;
+        background: #ccc;
+        width: 300px;
+        height: 300px;
+        transition: all 0.5s ease;
+      }
+      .form input[type="text"],
+      .form input[type="color"] {
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 16px;
+      }
+      .form button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form">
+      <label for="w">가로길이 (px)</label>
+      <input type="text" id="w" name="w" placeholder="300" />
+      <label for="h">세로길이 (px)</label>
+      <input type="text" id="h" name="h" placeholder="300" />
+      <label for="c">배경색</label>
+      <input type="color" id="c" name="c" />
+      <button type="button" id="btn">적용하기</button>
+    </div>
+    <div id="box"></div>
+
+    <script>
+      document.querySelector("#btn").addEventListener("click", function () {
+        // 입력 값 가져오기
+        const width = document.querySelector("#w").value;
+        const height = document.querySelector("#h").value;
+        const color = document.querySelector("#c").value;
+
+        // 박스 스타일 업데이트
+        const box = document.querySelector("#box");
+
+        // 입력된 값이 비어있지 않은 경우에만 적용
+        if (width) {
+          box.style.width = width + "px";
+        }
+        if (height) {
+          box.style.height = height + "px";
+        }
+        if (color) {
+          box.style.backgroundColor = color;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+        border: 1px solid #000;
+        text-align: center;
+      }
+      th {
+        background-color: #ccc;
+        font-weight: bold;
+      }
+      .btnContainer {
+        width: 204px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .btnContainer .btn {
+        padding: 5px 10px;
+      }
+      .nowMonth {
+        text-align: center;
+        width: 204px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="nowMonth"><span id="nowMonthValue">9</span>월</p>
+    <div id="calendar"></div>
+    <div class="btnContainer">
+      <button type="button" id="btnPrev" class="btn btn-prev">이전달</button>
+      <button type="button" id="btnNext" class="btn btn-next">다음달</button>
+    </div>
+    <script>
+      let nowYear = 2024;
+      let nowMonth = 9;
+      function createCalendar(elem, year, month) {
+        const mon = month - 1;
+        // 1. new Date(연, 월)
+        const d = new Date(year, mon);
+        // 2. table 태그를 생성
+        let html = "";
+        // 3. 일 연산 내용에
+        html += `
+            <table>
+              <thead>
+                <tr>
+                  <th>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th>토</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+          `;
+        for (let i = 0; i < getDay(d); i++) {
+          html += `<td></td>`;
+        }
+        // 4. td가 7개가 되면 </tr> 태그를 html += ......
+        while (d.getMonth() == mon) {
+          html += `<td>${d.getDate()}</td>`;
+          if (getDay(d) % 7 === 6) {
+            html += `</tr><tr>`;
+          }
+          d.setDate(d.getDate() + 1);
+        }
+        if (getDay(d) != 0) {
+          for (let i = getDay(d); i < 6; i++) {
+            html += `<td></td>`;
+          }
+        }
+        // 5. 마지막 날짜가 되면 마지막 행에 빈칸추가 후 </tbody></table>
+        html += `</tr></tbody></table>`;
+        // 6. elem.innerHTML = html;
+        elem.innerHTML = html;
+      }
+      function getDay(date) {
+        let day = date.getDay();
+        if (day === 6) day = 7;
+        return day - 1;
+      }
+      const elem = document.querySelector("#calendar");
+      createCalendar(elem, 2024, 9);
+      const btnPrev = document.querySelector("#btnPrev");
+      const btnNext = document.querySelector("#btnNext");
+      btnPrev.addEventListener("click", () => {
+        createCalendar(elem, 2024, nowMonth <= 1 ? (nowMonth = 1) : nowMonth--);
+        document.querySelector("#nowMonthValue").innerHTML = nowMonth;
+      });
+      btnNext.addEventListener("click", () => {
+        createCalendar(
+          elem,
+          2024,
+          nowMonth >= 12 ? (nowMonth = 12) : nowMonth++
+        );
+        document.querySelector("#nowMonthValue").innerHTML = nowMonth;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style></style>
+  </head>
+  <body>
+    <!-- <form id="form">
+      <fieldset name="fs">
+        <input type="text" name="one" value="1" />
+      </fieldset>
+      
+    </form> -->
+
+    <select id="select">
+      <option value="사과">사과</option>
+      <option value="배">배</option>
+      <option value="바나나">바나나</option>
+    </select>
+    <input type="checkbox" id="chk" checked />
+    <script>
+      // 폼, 폼 조작
+
+      // const form = document.querySelector("#form");
+      // const fieldset = form.elements.fs;
+      // console.log(fieldset.elements.one);
+      // console.log(form.elements.one);
+      // console.log(fieldset.elements.one == form.elements.one);
+
+      const select = document.querySelector("#select");
+      select.options[2].selected = true;
+      select.selectedIndex = 2;
+      select.value = "바나나";
+      console.log(select.value);
+
+      const chk = document.querySelector("#chk");
+      console.log(chk.checked);
+    </script>
+  </body>
+</html>

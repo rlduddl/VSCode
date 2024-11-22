@@ -1,0 +1,10 @@
+table {
+  caption-side: bottom; /* 표 캡션 위치 */
+  border: 1px solid black; /* 표 테두리는 검은 색 실선으로 */
+}
+td,
+th {
+  border: 1px dotted black; /* 셀 테두리는 검은 색 점선으로 */
+  padding: 10px; /* 셀 테두리와 내용 사이의 여백 */
+  text-align: center; /* 셀 내용 가운데 정렬 */
+}

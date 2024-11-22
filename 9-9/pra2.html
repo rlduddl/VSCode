@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      .content section {
+        display: none;
+      }
+      #tab1:checked ~ .content #c1,
+      #tab2:checked ~ .content #c2,
+      #tab3:checked ~ .content #c3 {
+        display: block;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+      .tabs ul label {
+        cursor: pointer;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: block;
+      }
+      .tabs ul label:hover {
+        background-color: blueviolet;
+      }
+      .tabs ul {
+        display: flex;
+        list-style: none;
+
+        border: 1px solid rgb(77, 160, 77);
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        text-align: center;
+        justify-content: space-between;
+        background-color: rgb(77, 160, 77);
+      }
+      .tabs ul li {
+        width: 100%;
+
+        color: white;
+      }
+
+      .content {
+        padding-left: 15px;
+      }
+      /* input[type="radio"]:nth-child(1):checked ~ .content section:nth-child(1),
+      input[type="radio"]:nth-child(2):checked ~ .content section:nth-child(2),
+      input[type="radio"]:nth-child(3):checked ~ .content section:nth-child(3) {
+        display: block;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="tabs">
+      <input type="radio" id="tab1" name="tab-control" checked />
+      <input type="radio" id="tab2" name="tab-control" />
+      <input type="radio" id="tab3" name="tab-control" />
+      <ul>
+        <li title="Tab 1">
+          <label for="tab1" role="button"><span>Tab 1</span></label>
+        </li>
+        <li title="Tab 2">
+          <label for="tab2" role="button"><span>Tab 2</span></label>
+        </li>
+        <li title="Tab 3">
+          <label for="tab3" role="button"><span>Tab 3</span></label>
+        </li>
+      </ul>
+      <div class="content">
+        <section id="c1">
+          <h2>Content 1</h2>
+          <p>탭 1번 내용</p>
+        </section>
+        <section id="c2">
+          <h2>Content 2</h2>
+          <p>탭 2번 내용</p>
+        </section>
+        <section id="c3">
+          <h2>Content 3</h2>
+          <p>탭 3번 내용</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

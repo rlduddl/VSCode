@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .body {
+        position: relative;
+      }
+      #box {
+        display: flex;
+        justify-content: flex-start; /* 기본값을 설정 */
+        padding: 20px;
+        border: 5px solid #000;
+        background: #ccc;
+        width: 300px;
+        height: 300px;
+        transition: all 0.5s ease;
+        /* 기본 textAlign을 설정 */
+        text-align: left;
+        align-items: flex-start; /* 세로 정렬의 기본값 설정 */
+      }
+      form {
+        width: 600px;
+        margin: 0 auto;
+      }
+
+      .form1,
+      .form2,
+      .form3,
+      .form4,
+      .form5,
+      .form6,
+      .form7
+      {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+        
+      }
+      .form7{
+        justify-content: center;
+
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+    <div>
+      <div class="form1">
+        <label for="a">너비 :</label>
+        <input type="text" id="a" name="a" placeholder="200" />
+        <label for="b">높이 :</label>
+        <input type="text" id="b" name="b" placeholder="400" />
+      </div>
+
+      <div class="form2">
+        <label for="c">
+          글자 크기 :
+          <input type="text" id="c" name="c" placeholder="20" />
+        </label>
+
+        <label
+          >굵기 :<input type="radio" id="d1" name="d" value="normal" />
+          보통</label
+        >
+        <label><input type="radio" id="d2" name="d" value="bold" /> 굵기</label>
+      </div>
+
+      <div class="form3">
+        <label for="e"
+          >글자 색상 :
+          <input type="text" id="e" name="e" placeholder="red" />
+        </label>
+        <label for="f"
+          >배경 색상 :
+          <input type="text" id="f" name="f" placeholder="yellow" />
+        </label>
+      </div>
+
+      <div class="form4">
+        <label for="g"
+          >가로 정렬 :
+
+          <input type="radio" id="g1" name="g" value="flex-start" />
+          왼쪽</label
+        >
+
+        <label
+          ><input type="radio" id="g2" name="g" value="center" /> 가운데</label
+        >
+        <label
+          ><input type="radio" id="g3" name="g" value="flex-end" />
+          오른쪽</label
+        >
+      </div>
+
+      <div class="form5">
+        <label for="h"
+          >세로 정렬 :
+          <label
+            ><input type="radio" id="h1" name="h" value="flex-start" />
+            위</label
+          >
+          <label
+            ><input type="radio" id="h2" name="h" value="center" />
+            가운데</label
+          >
+          <label
+            ><input type="radio" id="h3" name="h" value="flex-end" />
+            아래</label
+          >
+        </label>
+      </div>
+
+      <div class="form6">
+        <label for="i">출력 문자열 :
+        <input type="text" id="i" name="i" placeholder="Hello World!" />
+      </div>
+    </label>
+
+      <div class="form7">
+        <button type="button" id="btn">적용하기</button>
+      </div>
+
+      <div id="box"></div>
+    </div>
+
+    <script>
+      document.querySelector("#btn").addEventListener("click", function () {
+        const a = document.querySelector("#a").value;
+        const b = document.querySelector("#b").value;
+        const c = document.querySelector("#c").value;
+        const d = document.querySelector('input[name="d"]:checked')?.value;
+        const e = document.querySelector("#e").value;
+        const f = document.querySelector("#f").value;
+        const i = document.querySelector("#i").value;
+        const g =
+          document.querySelector('input[name="g"]:checked')?.value ||
+          "flex-start"; // 기본값 'flex-start' 설정
+        const h =
+          document.querySelector('input[name="h"]:checked')?.value ||
+          "flex-start"; // 기본값 'flex-start' 설정
+        const box = document.querySelector("#box");
+
+        // console.log(box.style);
+
+        box.style.width = a + "px";
+        box.style.height = b + "px";
+        box.style.backgroundColor = f;
+        box.style.color = e;
+        box.style.fontSize = c + "px";
+        box.style.fontWeight = d;
+        box.textContent = i;
+        box.style.justifyContent = g; // 가로 정렬
+        box.style.alignItems = h; // 세로 정렬
+      });
+    </script>
+    </form>
+  </body>
+</html>

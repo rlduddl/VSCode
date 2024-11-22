@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pra4</title>
+    <style></style>
+  </head>
+  <body>
+    <button type="button" id="btn">버튼</button>
+    <!-- <button type="button" onclick="console.log(event.type)">버튼2</button> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM이 완성되었다.");
+      });
+
+      // 이벤트 객체
+      const btn = document.querySelector("#btn");
+
+      // const obj = {
+      //   handleEvent(e) {
+      //     console.log(`${e.type} 이벤트가 ${e.currentTarget}에서 발생했다.`);
+      //   },
+      // };
+      // btn.addEventListener("click", obj);
+
+      btn.onclick = function (e) {
+        const tg = `${e.type} 이벤트가 ${e.currentTarget}에서 발생했다.`;
+        const pos = `이벤트가 발생한 곳의 좌표는 ${e.clientX} : ${e.clientY}입니다.`;
+        console.log(tg);
+        console.log(pos);
+      };
+
+      // HTML 속성 : onclick="......"
+      // DOM 프로퍼티 : elem.onclick = function.......
+      // 메서드 : elem.addEventListener(event, handler, option);
+    </script>
+  </body>
+</html>

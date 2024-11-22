@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body id="text" something="비표준" type="text">
+    <div id="elem" about="about"></div>
+    <script>
+      // 속성과 프로퍼티
+      // 브라우저 : html 읽어서 (파싱(parsing)) DOM 객체를 생성.
+      // 요소 노드(element node)에서 대부분의 표준 HTML 속성(attribute)은 DOM 객체의 프로퍼티(property)가 된다. <div id="page"> DOM 객체에서 div.id'page'를 사용하는 경우.
+      //   document.body.myData = {
+      //     name: "박기영",
+      //     title: "학생",
+      //   };
+      //   document.body.sayHi = function () {
+      //     console.log(this.tagName);
+      //   };
+      //   console.log(document.body.myData.title);
+      //   document.body.sayHi();
+
+      console.log(document.body.id);
+      console.log(document.body.something); //undefined
+
+      // 비표준 속성 접근시 사용할 수 있는 메서드
+      // elem.hasAttribute(name) - 속성 존재 여부 확인
+      // elem.getAttribute(name) - 속성값을 가져온다.
+      // elem.setAttribute(name, value) - 속성값을 변경한다.
+      // elem.removeAttribute(name) - 속성값 삭제.
+      console.log(document.body.getAttribute("something"));
+
+      // 속성 읽기
+      const elem = document.querySelector("#elem");
+      console.log(elem.getAttribute("about"));
+      // 속성 추가
+      elem.setAttribute("test", 123);
+      // 속성 추가된것 확인
+      console.log(elem.outerHTML);
+      // 속성을 한번에 모두 확인 elem.attributes
+      for (let attr of elem.attributes) {
+        console.log(attr.name, attr.value);
+      }
+
+      //   const chk = document.querySelector("#input");
+      //   console.log(chk.getAttribute("checked"));
+      //   console.log(chk.checked);
+      //   const div = document.querySelector("#div");
+      //   console.log(div.getAttribute("style"));
+      //   console.log(div.style);
+    </script>
+  </body>
+</html>

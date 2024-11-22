@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        text-align: center;
+      }
+      th {
+        background-color: #ccc;
+        font-weight: bold;
+      }
+      .btnContainer {
+        width: 100%;
+        max-width: 600px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-between;
+      }
+      .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #007bff;
+        transition: background-color 0.3s;
+      }
+      .btn-prev {
+        background-color: #28a745;
+      }
+      .btn-prev:hover {
+        background-color: #218838;
+      }
+      .btn-next {
+        background-color: #ffc107;
+      }
+      .btn-next:hover {
+        background-color: #e0a800;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar"></div>
+    <div class="btnContainer">
+      <button type="button" class="btn btn-prev">이전달</button>
+      <button type="button" class="btn btn-next">다음달</button>
+    </div>
+
+    <script>
+      let currentYear = 2024;
+      let currentMonth = 9;
+
+      function createCalendar(elem, year, month) {
+        const firstDay = new Date(year, month - 1, 1);
+        const lastDay = new Date(year, month, 0);
+
+        const firstDayOfWeek = firstDay.getDay();
+        const lastDate = lastDay.getDate();
+
+        let html = "<table>";
+        html += "<thead><tr>";
+        const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+        for (const day of dayOfWeek) {
+          html += `<th>${day}</th>`;
+        }
+        html += "</tr></thead><tbody>";
+
+        let date = 1;
+        for (let row = 0; row < 6; row++) {
+          html += "<tr>";
+          for (let col = 0; col < 7; col++) {
+            if (row === 0 && col < firstDayOfWeek) {
+              html += "<td></td>";
+            } else if (date > lastDate) {
+              html += "<td></td>";
+            } else {
+              html += `<td>${date}</td>`;
+              date++;
+            }
+          }
+          html += "</tr>";
+          if (date > lastDate) break;
+        }
+
+        html += "</tbody></table>";
+        elem.innerHTML = html;
+      }
+
+      function updateCalendar() {
+        const elem = document.querySelector("#calendar");
+        createCalendar(elem, currentYear, currentMonth);
+      }
+
+      document.querySelector(".btn-prev").addEventListener("click", () => {
+        if (currentMonth === 1) {
+          currentMonth = 12;
+          currentYear--;
+        } else {
+          currentMonth--;
+        }
+        updateCalendar();
+      });
+
+      document.querySelector(".btn-next").addEventListener("click", () => {
+        if (currentMonth === 12) {
+          currentMonth = 1;
+          currentYear++;
+        } else {
+          currentMonth++;
+        }
+        updateCalendar();
+      });
+
+      // Initial calendar setup
+      updateCalendar();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,342 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: "Noto Sans KR";
+  font-size: 14px;
+  font-weight: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/**
+0 : 변수지정
+1 : 공통 스타일
+2 : 헤더 스타일
+3 : 푸터 스타일
+**/
+
+:root {
+  --bg: #17141f;
+  --text: #efefef;
+  --primary: #db2d43;
+}
+a {
+  text-decoration: none;
+}
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+a,
+button {
+  color: var(--text);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 5px;
+  background-color: rgba(20, 23, 31, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(50px);
+  z-index: 1000;
+}
+.header .headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.header .headerSearch {
+  width: 100%;
+}
+.header .inputContainer {
+  position: relative;
+}
+.header .inputContainer .fa.fa-search {
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  color: var(--text);
+}
+.header .inputContainer .headerSearch {
+  background-color: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding-left: 25px;
+}
+.header .logo a {
+  color: var(--primary);
+}
+.container {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movieList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movieList li {
+  width: 25%;
+  padding: 10px;
+}
+.movieList li a {
+  display: block;
+  border-radius: 5px;
+  box-shadow: 5px 0 5px rgba(10, 10, 10, 0.5);
+}
+.movieList .imgContainer img {
+  max-width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.movieList .infoContainer {
+  position: relative;
+  padding: 10px;
+}
+.movieList .infoContainer .rate {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.movieList .infoContainer .date {
+  font-size: 10px;
+}
+.movieList .infoContainer .title {
+  color: var(--primary);
+  font-weight: bold;
+  margin-top: 5px;
+}
+.movieList li a {
+  transition: all 0.3s;
+}
+.movieList li a:hover {
+  transform: translateY(-10px);
+}
+
+/** 미디어 쿼리를 사용해서 920픽셀 미만의 경우 movieList에 li 태그의 width를 50%로 변경한다. **/
+
+@media (min-width: 640px) and (max-width: 919px) {
+  .movieList li {
+    width: 50%;
+  }
+  .container {
+    width: auto;
+  }
+}
+
+/** 아이패드 : 가로 640px 세로 1024px **/
+
+@media (max-width: 639px) {
+  .movieList li {
+    width: auto;
+  }
+  .container {
+    width: auto;
+  }
+}
+
+.btnMore {
+  background-color: var(--primary);
+  display: block;
+  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s;
+  margin: 50px auto 100px auto;
+}
+
+.btnMore:hover {
+  background-color: #ec0e2b;
+}
+
+.yearsContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.yearsContainer ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.yearsContainer ol button {
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.genresContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.genresContainer ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.genresContainer button {
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 5px 10px;
+  border-radius: 5px;
+}

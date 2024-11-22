@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <script src="/asset/jquery-3.7.1.min.js"></script>
+
+    <link rel="stylesheet" href="slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="slick-1.8.1/slick/slick-theme.css" />
+    <script src="slick-1.8.1/slick/slick.min.js"></script>
+    <style>
+      .container {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      ul li img {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul id="slider">
+        <li><img src="img/1.jpg" alt="" /></li>
+        <li><img src="img/2.jpg" alt="" /></li>
+        <li><img src="img/3.jpg" alt="" /></li>
+        <li><img src="img/4.jpg" alt="" /></li>
+        <li><img src="img/5.jpg" alt="" /></li>
+        <li><img src="img/6.jpg" alt="" /></li>
+        <li><img src="img/7.jpg" alt="" /></li>
+        <li><img src="img/8.jpg" alt="" /></li>
+        <li><img src="img/9.jpg" alt="" /></li>
+        <li><img src="img/10.jpg" alt="" /></li>
+      </ul>
+    </div>
+
+    <script>
+      // 문서를 다 읽고 나서 실행
+      $(document).ready(function () {
+        // slick 이벤트 실행
+        $("#slider").slick({
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        });
+      });
+    </script>
+  </body>
+</html>

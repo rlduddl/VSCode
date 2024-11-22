@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="div">hello <b>world</b></div> -->
+    <!-- <p>P 태그</p>
+    <div>div 태그</div> -->
+
+    <!-- 주석 -->
+
+    <!-- <div id="news">
+      <h1>주요 뉴스!</h1>
+      <p>화성인들 주요 뉴스</p>
+    </div> -->
+
+    <div id="elem1">elem1</div>
+    <div id="elem2">elem2</div>
+
+    <div id="hidden">자바스크립트로 요소숨기기</div>
+    <div hidden>html의 hidden</div>
+
+    <input type="text" id="txt" value="벨류" />
+
+    <script>
+      // innerHTML, outerHTML
+      // innerHTML : 요소 안의 HTML을 문자열 형태로 받아온다. 그리고 수정도 가능.
+      // console.log(document.body.innerHTML);
+      // document.body.innerHTML = "<p>p태그";
+
+      //outerHTML : 지정한 태그의 요소 전체HTML이 담겨있다. outerHTML은 innerHTML에 요소 자체를 더한것
+
+      //   const elem = document.querySelector("#div");
+      //   elem.outerHTML = "<p>새로운 요소</p>";
+      //   console.log(elem.outerHTML);
+      //   console.log(elem.innerHTML);
+      // innerHTML과 다른점은 outerHTML을 사용해서 HTML을 쓸때 요소 자체가 바뀌지 않는다. 대신 outerHTML은 DOM안의 요소를 교체한다.
+      // div.outerHTML
+      // 문서에서 div를 삭제
+      // 기존 HTML을 삭제하고 새로운 HTML코드를 공간에 삽입
+      // div에 여전히 기존 값이 저장되어 있고 새로운 html은 저장되지 않는다.
+      // innerHTML은 div를 수정한다.
+      // outerHTML은 div를 수정하지 않는다.
+
+      // nodeValue, data ===> 텍스트 노드 내용 조작
+      //   const text = document.body.firstChild;
+      //   console.log(text.data);
+      //   const comment = text.nextSibling;
+      //   console.log(comment.data);
+
+      //   const news = document.querySelector("news");
+
+      // textContent 요소 내의 텍스트만 접근
+      // (태그는 제외)
+      // textContent는 텍스트의 안전한 방법으로 쓸 수 있다.
+      //   console.log(news.textContent);
+      //   const name = prompt("이름을 말해봐", "<b>박기영</b>");
+      //   const elem1 = document.querySelector("#elem1");
+      //   const elem2 = document.querySelector("#elem2");
+      //   elem1.innerHTML = name;
+      //   elem2.textContent = name;
+
+      // hidden : 요소를 보여줄지 숨길지 처리하는 속성
+      const hd = document.querySelector("#hidden");
+      hd.hidden = true;
+      setTimeout(() => (hd.hidden = true), 1000);
+      //setInterval
+      setInterval(() => (hd.hidden = !hd.hidden), 1000);
+      //   setInterval(function() {
+      //     hd.hidden = !hd.hidden
+      //   }, 1000);
+
+      // value : input, select, textarea, radio, checkbox 등 사용자 입력 요소의 값을 자겨올때 쓴다.
+      const txt = document.querySelector("#txt");
+      console.log(txt.value);
+      // id, type
+      console.log(txt.id);
+      console.log(txt.type);
+    </script>
+  </body>
+</html>

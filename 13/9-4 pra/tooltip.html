@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * body {
+        height: 3000px;
+      }
+      .tooltip {
+        position: fixed;
+        padding: 10px 20px;
+        background-color: #fff;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        box-shadow: 3px 3px 3px rbga(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and
+      typesetting industry. Lorem Ipsum has been the industry's standard dummy
+      text ever since the 1500s, when an unknown printer took a galley of type
+      and scrambled it to make a type specimen book. It has survived not only
+      five centuries, but also the leap into electronic typesetting, remaining
+      essentially unchanged. It was popularised in the 1960s with the release of
+      Letraset sheets containing Lorem Ipsum passages, and more recently with
+      desktop publishing software like Aldus PageMaker including versions of
+      Lorem Ipsum.
+    </p>
+
+    <button
+      type="button"
+      data-tooltip="버튼 요소 길이보다 툴팁 길이가 훨씬 긴 내용"
+    >
+      버튼 1
+    </button>
+    <button type="button" data-tooltip="두줄짜리</br>툴팁">버튼 2</button>
+    <p>
+      Why do we use it? It is a long established fact that a reader will be
+      distracted by the readable content of a page when looking at its layout.
+      The point of using Lorem Ipsum is that it has a more-or-less normal
+      distribution of letters, as opposed to using 'Content here, content here',
+      making it look like readable English. Many desktop publishing packages and
+      web page editors now use Lorem Ipsum as their default model text, and a
+      search for 'lorem ipsum' will uncover many web sites still in their
+      infancy. Various versions have evolved over the years, sometimes by
+      accident, sometimes on purpose (injected humour and the like).
+    </p>
+    <script>
+      let tooltipElem;
+      document.onmouseover = function (event) {
+        // 마우스 오버 한 대상 확인 코드
+        let target = event.target;
+        console.log(target);
+
+        // data-tooltip 속성이 있는 요소 확인
+        let tooltipHtml = target.dataset.tooltip;
+        console.log(tooltipHtml);
+        if (!tooltipHtml) return;
+
+        // 툴팁이 있을 경우 툴팁 요소 생성
+        tooltipElem = document.createElement("div");
+        tooltipElem.innerHTML = tooltipHtml;
+        tooltipElem.className = "tooltip";
+        document.body.append(tooltipElem);
+
+        // 툴팁 요소를 data-tooltip 속성 있는 요소의 위, 가운데에 위치시킨다.
+        // getBoundingClientRect() : 선택한 요소의 위치 파악
+        let coords = target.getBoundingClientRect();
+        console.log(coords);
+
+        // 좌측 픽셀 계산
+        let left =
+          coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+        if (left < 0) left = 5;
+        // 상단 픽셀 계산
+        let top = coords.top - tooltipElem.offsetHeight - 5;
+        if (top < 0) {
+          top = coords.top + tooltipElem.offsetHeight - 2;
+        }
+
+        tooltipElem.style.left = left + "px";
+        tooltipElem.style.top = top + "px";
+      };
+      document.onmouseout = function (event) {
+        if (tooltipElem) {
+          tooltipElem.remove();
+          tooltipElem = null;
+        }
+      };
+    </script>
+  </body>
+</html>

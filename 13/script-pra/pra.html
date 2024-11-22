@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ol id="elem">
+      <li>hello</li>
+      <li>world</li>
+    </ol>
+    <script>
+      // 요소의 모든 하위 요소들을 삭제하는 함수
+      function clear(elem) {
+        // while (elem.firstChild) {
+        //   elem.firstChild.remove();
+        // }
+        elem.innerHTML = "";
+      }
+      const elem = document.querySelector("#elem");
+      clear(elem);
+    </script>
+  </body>
+</html>
